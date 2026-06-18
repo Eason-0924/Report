@@ -37,7 +37,7 @@ import javax.swing.table.TableColumn;
 import system.StartSystem;
 import system.TableStyle;
 
-public class ManageBook extends JPanel {
+public class ManageBooks extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final DefaultTableModel tableModel;
@@ -54,7 +54,7 @@ public class ManageBook extends JPanel {
 	private final MultiValueField isbnField;
 	private final JTextArea noteArea;
 
-	public ManageBook() {
+	public ManageBooks() {
 		super.setLayout(new BorderLayout());
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);

@@ -28,7 +28,7 @@ public class FunctionBar extends JPanel {
 		profileButton = new TabButton("Admin Profile", BACKGROUND);
 		bookManagementButton = new TabButton("Manage Books", BACKGROUND);
 		userManagementButton = new TabButton("Manage Users", BACKGROUND);
-		manageRecordButton = new TabButton("Manage Record", BACKGROUND);
+		manageRecordButton = new TabButton("Manage Records", BACKGROUND);
 		analysisButton = new TabButton("Analysis", BACKGROUND);
 		settingsButton = new TabButton("Settings", BACKGROUND);
 

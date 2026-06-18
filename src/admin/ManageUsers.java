@@ -31,7 +31,7 @@ import system.StartSystem;
 import system.SuspensionManager;
 import system.TableStyle;
 
-public class ManageUser extends JPanel {
+public class ManageUsers extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final DefaultTableModel tableModel;
@@ -41,7 +41,7 @@ public class ManageUser extends JPanel {
 	private final JLabel selectedUserLabel;
 	private final JButton clearTemporaryButton;
 
-	public ManageUser() {
+	public ManageUsers() {
 		super.setLayout(new BorderLayout(10, 10));
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);

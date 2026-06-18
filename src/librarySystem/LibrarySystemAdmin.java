@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 import admin.FunctionBar;
 import admin.Analysis;
-import admin.ManageBook;
-import admin.ManageRecord;
-import admin.ManageUser;
+import admin.ManageBooks;
+import admin.ManageRecords;
+import admin.ManageUsers;
 import admin.Profile;
 import admin.Settings;
 import login.Login;
@@ -32,7 +32,7 @@ public class LibrarySystemAdmin extends JFrame {
 	private final JPanel contentPanel;
 	private final CardLayout cardLayout;
 	private final Profile profilePanel;
-	private final ManageRecord manageRecordPanel;
+	private final ManageRecords manageRecordPanel;
 	private final Analysis analysisPanel;
 	private final Settings settingsPanel;
 
@@ -50,9 +50,9 @@ public class LibrarySystemAdmin extends JFrame {
 			dispose();
 		});
 		contentPanel.add(profilePanel, "profile");
-		contentPanel.add(new ManageBook(), "books");
-		contentPanel.add(new ManageUser(), "users");
-		manageRecordPanel = new ManageRecord();
+		contentPanel.add(new ManageBooks(), "books");
+		contentPanel.add(new ManageUsers(), "users");
+		manageRecordPanel = new ManageRecords();
 		contentPanel.add(manageRecordPanel, "records");
 		analysisPanel = new Analysis();
 		contentPanel.add(analysisPanel, "analysis");

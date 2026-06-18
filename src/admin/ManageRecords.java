@@ -28,24 +28,24 @@ import javax.swing.table.TableColumnModel;
 import system.StartSystem;
 import system.TableStyle;
 
-public class ManageRecord extends JPanel {
+public class ManageRecords extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final DateTimeFormatter DATE_FORMAT =
 			DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	private final SearchBorrowRecord borrowRecordPanel;
 	private final ReservationRecordPanel reservationRecordPanel;
-	private final ManageReview reviewRecordPanel;
+	private final ManageReviews reviewRecordPanel;
 	private final JTabbedPane recordTabs;
 
-	public ManageRecord() {
+	public ManageRecords() {
 		super(new BorderLayout());
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);
 
 		borrowRecordPanel = new SearchBorrowRecord();
 		reservationRecordPanel = new ReservationRecordPanel();
-		reviewRecordPanel = new ManageReview();
+		reviewRecordPanel = new ManageReviews();
 
 		recordTabs = new JTabbedPane();
 		recordTabs.setUI(createTabUI());
