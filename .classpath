@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 25.0.2 [25.0.2]">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/Users/chanyu/eclipse-workspace/report/reference/mysql-connector-j-9.6.0.jar"/>
+	<classpathentry kind="lib" path="/Users/chanyu/eclipse-workspace/report/reference/jackson-annotations-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/Users/chanyu/eclipse-workspace/report/reference/jackson-core-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/Users/chanyu/eclipse-workspace/report/reference/jackson-databind-2.9.9.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
