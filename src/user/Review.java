@@ -27,8 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import system.StartSystem;
 import system.TableStyle;
 
-public final class ReviewPanel {
-	private ReviewPanel() {
+public final class Review {
+	private Review() {
 	}
 
 	public static void showWriteReviewDialog(

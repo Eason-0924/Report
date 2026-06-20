@@ -188,7 +188,7 @@ public class BookInfo extends JFrame{
 		gbc.gridy = 2;
 		gbc.weighty = 0.7;
 		contentPanel.add(
-				ReviewPanel.createReviewsPanel(book_id, true), gbc);
+				Review.createReviewsPanel(book_id, true), gbc);
 		
 		super.setContentPane(contentPanel);
 		super.pack();

@@ -9,47 +9,27 @@ import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-
-import system.StartSystem;
-import system.TableStyle;
 
 public class PersonalRecord extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private final int userId;
-	private final DefaultTableModel borrowModel;
-	private final DefaultTableModel reviewModel;
-	private final Reservation reservationPanel;
+	private final BorrowRecord borrowRecordPanel;
+	private final ReservationRecord reservationRecordPanel;
+	private final ReviewRecord reviewRecordPanel;
 
 	public PersonalRecord(int userId) {
-		this.userId = userId;
-
 		super.setLayout(new BorderLayout());
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);
 
-		borrowModel = createReadOnlyModel(new String[] {
-				"Book Title", "Borrow Date", "Due Date", "Return Date"
-		});
-		reviewModel = createReadOnlyModel(new String[] {
-				"Book Title", "Rating", "Comment", "Review Date"
-		});
-
-		JTable borrowTable = createTable(borrowModel);
-		JTable reviewTable = createTable(reviewModel);
-		reservationPanel = new Reservation(userId);
-		reservationPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+		borrowRecordPanel = new BorrowRecord(userId);
+		reservationRecordPanel = new ReservationRecord(userId);
+		reviewRecordPanel = new ReviewRecord(userId);
 
 		JTabbedPane recordsTabs = new JTabbedPane();
 		recordsTabs.setUI(new BasicTabbedPaneUI() {
@@ -140,11 +120,11 @@ public class PersonalRecord extends JPanel {
 		recordsTabs.setBackground(Color.WHITE);
 		recordsTabs.setOpaque(true);
 		recordsTabs.addTab(
-				"Borrow Records", new JScrollPane(borrowTable));
+				"Borrow Records", borrowRecordPanel);
 		recordsTabs.addTab(
-				"Reservation Records", reservationPanel);
+				"Reservation Records", reservationRecordPanel);
 		recordsTabs.addTab(
-				"Review Records", new JScrollPane(reviewTable));
+				"Review Records", reviewRecordPanel);
 		for (int index = 0; index < recordsTabs.getTabCount(); index++) {
 			recordsTabs.setBackgroundAt(index, Color.WHITE);
 		}
@@ -160,86 +140,9 @@ public class PersonalRecord extends JPanel {
 		loadRecords();
 	}
 
-	private DefaultTableModel createReadOnlyModel(String[] columns) {
-		return new DefaultTableModel(columns, 0) {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-	}
-
-	private JTable createTable(DefaultTableModel model) {
-		JTable table = new JTable(model);
-		table.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		table.getTableHeader().setFont(
-				new Font("SansSerif", Font.BOLD, 15));
-		table.setRowHeight(28);
-		table.setAutoCreateRowSorter(true);
-		table.getTableHeader().setReorderingAllowed(false);
-		TableStyle.applyUserStyle(table);
-		return table;
-	}
-
 	public void loadRecords() {
-		loadBorrowRecords();
-		reservationPanel.loadReservations();
-		loadReviewRecords();
-	}
-
-	private void loadBorrowRecords() {
-		String sql =
-				"SELECT b.title, r.borrow_date, r.due_date, r.return_date " +
-				"FROM borrow_records r " +
-				"JOIN books b ON r.book_id = b.book_id " +
-				"WHERE r.user_id = ? ORDER BY r.borrow_date DESC";
-
-		borrowModel.setRowCount(0);
-		try (PreparedStatement statement =
-				StartSystem.db.prepareStatement(sql)) {
-			statement.setInt(1, userId);
-			try (ResultSet resultSet = statement.executeQuery()) {
-				while (resultSet.next()) {
-					String returnDate = resultSet.getString("return_date");
-					borrowModel.addRow(new Object[] {
-							resultSet.getString("title"),
-							resultSet.getString("borrow_date"),
-							resultSet.getString("due_date"),
-							returnDate == null ? "Borrowing" : returnDate
-					});
-				}
-			}
-		} catch (SQLException exception) {
-			exception.printStackTrace();
-		}
-	}
-
-	private void loadReviewRecords() {
-		String sql =
-				"SELECT b.title, r.rating, r.comment, " +
-				"DATE(r.created_at) AS review_date " +
-				"FROM reviews r " +
-				"JOIN books b ON r.book_id = b.book_id " +
-				"WHERE r.user_id = ? ORDER BY r.created_at DESC";
-
-		reviewModel.setRowCount(0);
-		try (PreparedStatement statement =
-				StartSystem.db.prepareStatement(sql)) {
-			statement.setInt(1, userId);
-			try (ResultSet resultSet = statement.executeQuery()) {
-				while (resultSet.next()) {
-					reviewModel.addRow(new Object[] {
-							resultSet.getString("title"),
-							resultSet.getInt("rating") + " / 5",
-							resultSet.getString("comment"),
-							resultSet.getString("review_date")
-					});
-				}
-			}
-		} catch (SQLException exception) {
-			exception.printStackTrace();
-		}
+		borrowRecordPanel.loadRecords();
+		reservationRecordPanel.loadReservations();
+		reviewRecordPanel.loadRecords();
 	}
 }

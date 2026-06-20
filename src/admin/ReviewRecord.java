@@ -26,7 +26,7 @@ import javax.swing.table.TableColumnModel;
 import system.StartSystem;
 import system.TableStyle;
 
-public class ManageReviews extends JPanel {
+public class ReviewRecord extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final DefaultTableModel tableModel;
@@ -34,7 +34,7 @@ public class ManageReviews extends JPanel {
 	private final JLabel countLabel;
 	private final List<Integer> reviewIds = new ArrayList<>();
 
-	public ManageReviews() {
+	public ReviewRecord() {
 		super(new BorderLayout(10, 10));
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);

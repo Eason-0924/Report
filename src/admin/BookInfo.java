@@ -30,7 +30,6 @@ import javax.swing.table.TableColumn;
 
 import system.StartSystem;
 import system.TableStyle;
-import user.ReviewPanel;
 
 public class BookInfo extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -105,7 +104,7 @@ public class BookInfo extends JFrame {
 		JPanel historyPanel = new JPanel(new GridLayout(2, 1, 0, 10));
 		historyPanel.setBackground(Color.WHITE);
 		historyPanel.add(recordPanel);
-		historyPanel.add(ReviewPanel.createReviewsPanel(bookId));
+		historyPanel.add(user.Review.createReviewsPanel(bookId));
 		contentPanel.add(historyPanel, BorderLayout.CENTER);
 		contentPanel.add(createButtonPanel(), BorderLayout.SOUTH);
 

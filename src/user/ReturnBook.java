@@ -252,7 +252,7 @@ public class ReturnBook extends JPanel{
 
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window instanceof JFrame frame) {
-                ReviewPanel.showWriteReviewDialog(
+                Review.showWriteReviewDialog(
                         frame, user_id, bookId, bookTitle);
             }
         } catch (Exception e) { e.printStackTrace(); }

@@ -31,7 +31,7 @@ import javax.swing.table.TableColumn;
 import system.StartSystem;
 import system.TableStyle;
 
-public class SearchBorrowRecord extends JPanel {
+public class BorrowRecord extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final DateTimeFormatter DATE_FORMAT =
 			DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -41,7 +41,7 @@ public class SearchBorrowRecord extends JPanel {
 	private final DefaultTableModel tableModel;
 	private final JLabel resultCountLabel;
 
-	public SearchBorrowRecord() {
+	public BorrowRecord() {
 		super.setLayout(new BorderLayout(10, 10));
 		super.setBorder(new EmptyBorder(10, 10, 10, 10));
 		super.setBackground(Color.WHITE);
